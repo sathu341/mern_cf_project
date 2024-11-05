@@ -24,6 +24,7 @@ export default function Addtodolist() {
       <Container>
         <Row className='justify-content-center mt-2'>
             <Col lg={6} className='p-3 border shadow rounded'> 
+            <a href="/">view</a>
              <Form onSubmit={handleSubmit}>
                 <Form.Group className='mt-2'>
                     <Form.Label>

@@ -14,11 +14,24 @@ export default function Viewtodolist() {
        })
        .catch(err=>console.log(err))
     })
+const deleteList=(idn)=>{
+    const ans=window.confirm("do you want to delete")
+    const api=`http://localhost:9000/todolist/todolistdelete/${idn}`
+    ans?
+    axios.delete(api)
+    .then((res)=>{
+          alert(res.data)
+    })
+    :
+    alert("cancel")
+   
 
+}
   return (
      <Container>
         <Row>
             <Col>
+            <a href="/add">+</a>
               <Table>
                 <thead>
                     <tr>
@@ -34,6 +47,7 @@ export default function Viewtodolist() {
                         <th>
                             Task Time
                         </th>
+                        <th> Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,6 +67,19 @@ export default function Viewtodolist() {
                             <td>
                                 {list.tasktime}
                             </td>
+                            <td>
+                               <button onClick={
+                                ()=>{
+                                    deleteList(list._id)
+                                }
+                               }>
+                                delete
+                               </button>
+                             <a href={`/edit/${list._id}`}>
+                             Edit
+                             </a>
+                            </td>
+                          
                         </tr>
                        )
                        })

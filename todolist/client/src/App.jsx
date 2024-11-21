@@ -11,17 +11,19 @@ function App() {
   const Userreg=lazy(()=>import("./user/userregister"))
   const Login=lazy(()=>import("./user/login"))
   const Userhome=lazy(()=>import("./user/userhome"))
+  const Home=lazy(()=>import("./home"))
 
   return (
     <>
     <Suspense fallback={<div>Loading...</div>}>
     <Routes>
-      <Route path="/" element={<View></View>}></Route>
+      <Route path="/view" element={<View></View>}></Route>
       <Route path="/add" element={<Add/>}/> 
       <Route path="/edit/:id" element={<Edit/>}/>
       <Route path="/userreg" element={<Userreg/>}/>
       <Route path="/login" element={<Login/>}/>
       <Route path="/home" element={<Userhome/>}/>
+      <Route path="/" element={<Home/>}/>
     </Routes>
     </Suspense>
   

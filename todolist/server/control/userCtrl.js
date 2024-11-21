@@ -1,7 +1,8 @@
 const userModel=require('../model/userModel')
 const upload=require("../multerfiles/userupload")
 const bcrypt=require('bcrypt')
-const {createToken}=require('../middleware/token')
+const {createToken}=require('../middleware/token');
+const { use } = require('../router/todoRouter');
 let salt=10;
 const register=async(req,res)=>{
     const {fullname,email,password}=req.body;
@@ -52,8 +53,13 @@ const login=async(req,res)=>{
     }
 
 }
-
+const findProfile=async(req,res)=>{
+    const id=req.headers.idno;
+    const result=await userModel.find({_id:id})
+    res.json(result)
+}
 module.exports={
     register,
-    login
+    login,
+    findProfile
 }

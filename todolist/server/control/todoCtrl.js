@@ -3,8 +3,9 @@ const todoModels=require('../model/todoModel')
 
 const addTodolist=(req,res)=>{
   const {title,description,taskdate,tasktime}=req.body
+  const userid=req.headers.userid;
   todoModels.create(
-    {title,description,taskdate,tasktime}
+    {userid,title,description,taskdate,tasktime}
   )
   res.json({status:1,msg:"submit successfully"})
 }

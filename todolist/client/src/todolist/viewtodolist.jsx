@@ -5,6 +5,8 @@ import { Col, Container, Row, Table } from 'react-bootstrap'
 import axios from 'axios'
 import { useState,useEffect } from 'react'
 export default function Viewtodolist() {
+    const userid=localStorage.getItem('userid')
+    console.log(userid)
     const [todolist,setTodolist]=useState([])
     useEffect(()=>{
        const api="http://localhost:9000/todolist/gettodolist";
@@ -53,7 +55,10 @@ const deleteList=(idn)=>{
                 <tbody>
                     {
                        todolist.length>0?
-                       todolist.map((list)=>{
+                       todolist.filter((todo)=>{
+                           return todo._id==userid
+                       })
+                       .map((list)=>{
                        return( <tr key={list._id}>
                             <td>
                                 {list.title}

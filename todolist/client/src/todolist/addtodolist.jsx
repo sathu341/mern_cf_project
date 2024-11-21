@@ -10,8 +10,9 @@ export default function Addtodolist() {
     }
     const handleSubmit=(e)=>{
         e.preventDefault();
+        const userid=localStorage.getItem('userid')
         const api="http://localhost:9000/todolist/addtodolist"
-        axios.post(api,todolist)
+        axios.post(api,todolist,{headers:{userid:userid}})
         .then((res)=>{
             res.data.status==1? alert(res.data.msg):alert("error in submission")
             setTodolist(todolist.title='')
